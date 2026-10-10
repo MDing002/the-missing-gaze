@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>THE MISSING GAZE</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script>
+      if (window.location.protocol === "file:") {
+        window.location.replace("http://localhost:5174/");
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.2/lib/p5.min.js"></script>
+  </head>
+  <body>
+    <main id="app">
+      <header id="intro" aria-label="Project introduction">
+        <p>A CHOREOGRAPHIC SCORE</p>
+        <h1>THE MISSING GAZE</h1>
+        <em>What disappears here must disappear in you.</em>
+      </header>
+
+      <section id="stage" aria-label="Blind Spots interactive score"></section>
+      <aside id="panel" aria-live="polite">
+        <header class="panel-header">
+          <h2>tracking</h2>
+          <p>camera verification</p>
+        </header>
+
+        <div class="video-shell">
+          <video id="webcam" autoplay muted playsinline></video>
+          <canvas id="tracking-overlay" width="320" height="240" aria-hidden="true"></canvas>
+        </div>
+
+        <div class="controls">
+          <button id="camera-button" type="button">Enable camera</button>
+        </div>
+
+        <div id="status">Camera is waiting for permission.</div>
+        <div id="mode-readout">Mode: camera</div>
+        <div id="debug-readout">Anatomical left: no / right: no</div>
+        <pre id="diagnostics" aria-label="Camera diagnostics"></pre>
+      </aside>
+    </main>
+
+    <script type="module" src="./sketch.js"></script>
+  </body>
+</html>
