@@ -143,7 +143,14 @@ function updateDiagnostics() {
 }
 
 async function enableCamera() {
+  if (cameraActive && mediaReady) {
+    setStatus("Camera is already active. Follow the visible instruction.");
+    return;
+  }
+
   cameraButton.disabled = true;
+  cameraButton.classList.remove("is-active");
+  cameraButton.textContent = "Requesting permission...";
   setStatus("Requesting camera permission...");
 
   try {
@@ -171,17 +178,21 @@ async function enableCamera() {
       manualMode = false;
       manualPerformedState = null;
       trackingStatus = "running";
+      cameraButton.textContent = "Camera active";
+      cameraButton.classList.add("is-active");
       setStatus("Camera active. Tracking is running; use 1-4 to override.");
     } catch (mediaPipeError) {
       console.error(mediaPipeError);
       lastError = `MediaPipe: ${cameraErrorMessage(mediaPipeError)}`;
       trackingStatus = "MediaPipe failed";
+      cameraButton.textContent = "Try camera again";
       setStatus("Camera preview works, but MediaPipe failed to load. See diagnostics; manual keys 1-4 still work.");
     }
   } catch (error) {
     console.error(error);
     lastError = cameraErrorMessage(error);
     trackingStatus = "camera failed";
+    cameraButton.textContent = "Try camera again";
     setStatus(`${lastError}. Manual mode remains available.`);
     manualMode = true;
   } finally {

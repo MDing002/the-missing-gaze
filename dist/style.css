@@ -97,7 +97,7 @@ button:focus-visible {
   bottom: 18px;
   width: min(286px, calc(100vw - 36px));
   display: grid;
-  grid-template-rows: auto auto 38px 48px 38px 58px minmax(96px, 1fr);
+  grid-template-rows: auto auto 66px 48px 38px 58px minmax(96px, 1fr);
   gap: 9px;
   padding: 12px;
   border: 1px solid var(--soft);
@@ -166,13 +166,27 @@ dt {
 }
 
 .controls {
-  display: block;
-  min-height: 38px;
+  display: grid;
+  grid-template-rows: 38px 20px;
+  gap: 6px;
+  min-height: 66px;
 }
 
 .controls button {
   width: 100%;
   height: 38px;
+}
+
+#camera-help {
+  min-height: 20px;
+  overflow: hidden;
+  color: rgba(9, 9, 9, 0.68);
+}
+
+button.is-active {
+  background: var(--ink);
+  color: var(--paper);
+  cursor: default;
 }
 
 #status,
@@ -251,7 +265,7 @@ dt {
     left: 10px;
     width: calc(100vw - 20px);
     height: min(58vh, 430px);
-    grid-template-rows: auto 120px 38px 42px 34px 46px minmax(70px, 1fr);
+    grid-template-rows: auto 120px 66px 42px 34px 46px minmax(70px, 1fr);
   }
 
   .video-shell {
